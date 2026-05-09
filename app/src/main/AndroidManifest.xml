@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Camera & Audio -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!-- Network -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+
+    <!-- Keep CPU alive during streaming -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+
+    <!-- Vibrate for alarm feedback -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CatGuard"
+        android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="true">
+
+        <!-- Main entry point -->
+        <activity
+            android:name=".ui.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Camera Mode Activity -->
+        <activity
+            android:name=".camera.CameraActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:keepScreenOn="true" />
+
+        <!-- Viewer Mode Activity -->
+        <activity
+            android:name=".viewer.ViewerActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:keepScreenOn="true" />
+
+        <!-- Foreground service for camera streaming -->
+        <service
+            android:name=".camera.CameraStreamingService"
+            android:exported="false"
+            android:foregroundServiceType="camera|microphone" />
+
+    </application>
+
+</manifest>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0A0A0F">
+
+    <!-- Camera feed 1 (left / full screen when only 1 cam) -->
+    <org.webrtc.SurfaceViewRenderer
+        android:id="@+id/surfaceView1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvAlarmStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/divider" />
+
+    <!-- Vertical divider between feeds -->
+    <View
+        android:id="@+id/divider"
+        android:layout_width="2dp"
+        android:layout_height="0dp"
+        android:background="#333333"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvAlarmStatus"
+        app:layout_constraintStart_toEndOf="@+id/surfaceView1"
+        app:layout_constraintEnd_toStartOf="@+id/surfaceView2" />
+
+    <!-- Camera feed 2 (right side, visible only with 2 cameras) -->
+    <org.webrtc.SurfaceViewRenderer
+        android:id="@+id/surfaceView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvAlarmStatus"
+        app:layout_constraintStart_toEndOf="@+id/divider"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- "No cameras" placeholder -->
+    <TextView
+        android:id="@+id/tvNoCameras"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="📷\nNo cameras connected\n\nTap '+' to add a camera"
+        android:textColor="#80FFFFFF"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tvAlarmStatus"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Alarm status bar -->
+    <TextView
+        android:id="@+id/tvAlarmStatus"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No cameras connected"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:padding="12dp"
+        android:background="#CC1A1A1A"
+        app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <!-- Bottom toolbar -->
+    <LinearLayout
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#1A1A2E"
+        android:padding="8dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddCamera"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="+ Add Camera"
+            android:textSize="14sp"
+            app:backgroundTint="#1A6B3C"
+            app:cornerRadius="12dp"
+            android:layout_marginEnd="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnTestAlarm"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="🔔 Test"
+            android:textSize="14sp"
+            app:backgroundTint="#6B4A1A"
+            app:cornerRadius="12dp"
+            android:layout_marginHorizontal="4dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDisconnectAll"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Disconnect"
+            android:textSize="14sp"
+            app:backgroundTint="#6B1A1A"
+            app:cornerRadius="12dp"
+            android:layout_marginStart="4dp" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

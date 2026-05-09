@@ -1,0 +1,12 @@
+{
+  "name": "catguard-signaling",
+  "version": "1.0.0",
+  "description": "WebRTC signaling server for CatGuard",
+  "main": "signaling-server.js",
+  "scripts": {
+    "start": "node signaling-server.js"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}

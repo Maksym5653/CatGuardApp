@@ -1,0 +1,22 @@
+*.iml
+.gradle
+/local.properties
+/.idea
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# APK files (built by CI, not committed)
+*.apk
+*.aab
+
+# TFLite model - download separately or commit to repo
+# app/src/main/assets/*.tflite
+
+# Keystore (NEVER commit)
+*.jks
+*.keystore
+keystore.properties
